@@ -35,9 +35,9 @@
 
         html, body {
             height: 100%;
-            overflow: hidden;
-            position: fixed;
             width: 100%;
+            position: fixed;
+            overflow: hidden;
         }
 
         body {
@@ -59,6 +59,9 @@
             margin: 0 auto;
             width: 100%;
             padding: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         h1 {
@@ -430,7 +433,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Mini Crossword</h1>
+        <h1>Karen's Mini</h1>
         
         <div class="controls">
             <div class="timer" id="timer">00:00</div>
@@ -479,7 +482,6 @@
                     <div class="key" data-key="L">L</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="key wide" data-key="BACKSPACE">⌫</div>
                     <div class="key" data-key="Z">Z</div>
                     <div class="key" data-key="X">X</div>
                     <div class="key" data-key="C">C</div>
@@ -487,7 +489,7 @@
                     <div class="key" data-key="B">B</div>
                     <div class="key" data-key="N">N</div>
                     <div class="key" data-key="M">M</div>
-                    <div class="key wide" data-key="ENTER">✓</div>
+                    <div class="key wide" data-key="BACKSPACE">⌫</div>
                 </div>
             </div>
 
@@ -579,7 +581,7 @@
             across: {
                 1: { row: 0, col: 0, length: 5, text: "Complaints after the wrong prescription, perhaps" },
                 6: { row: 1, col: 0, length: 5, text: "He made you a mother" },
-                7: { row: 2, col: 0, length: 5, text: "Anagram of a bodily fluid, meaning to get accustomed" },
+                7: { row: 2, col: 0, length: 5, text: "Anagram of a bodily fluid, meaning 'get accustomed'" },
                 8: { row: 3, col: 0, length: 5, text: "Less common, as some blood types" },
                 9: { row: 4, col: 0, length: 5, text: "What data may show" }
             },
@@ -588,7 +590,7 @@
                 2: { row: 0, col: 1, length: 5, text: "Your daughter's domain?" },
                 3: { row: 0, col: 2, length: 5, text: "Desired outcome in medicine" },
                 4: { row: 0, col: 3, length: 5, text: "Mother to Luis, or an excessively demanding woman" },
-                5: { row: 0, col: 4, length: 5, text: "Serious adverse drug reaction, spelled upward" }
+                5: { row: 0, col: 4, length: 5, text: "Acronym for a serious adverse drug reaction, spelled upward" }
             }
         };
 
@@ -796,8 +798,6 @@
                 const keyValue = key.dataset.key;
                 if (keyValue === 'BACKSPACE') {
                     handleBackspace();
-                } else if (keyValue === 'ENTER') {
-                    document.getElementById('checkBtn').click();
                 } else {
                     inputLetter(keyValue);
                 }
