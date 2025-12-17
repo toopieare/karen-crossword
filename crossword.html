@@ -652,14 +652,14 @@
                             // Only move if next cell is still within the same across clue
                             if (nextCol < 5 && currentClue && nextCol < currentClue.col + currentClue.length) {
                                 manualFocus = false; // This is auto-navigation, not manual selection
-                                inputs[row][nextCol].focus();
+                                inputs[row][nextCol].focus({ preventScroll: true });
                             }
                         } else {
                             const nextRow = row + 1;
                             // Only move if next cell is still within the same down clue
                             if (nextRow < 5 && currentClue && nextRow < currentClue.row + currentClue.length) {
                                 manualFocus = false; // This is auto-navigation, not manual selection
-                                inputs[nextRow][col].focus();
+                                inputs[nextRow][col].focus({ preventScroll: true });
                             }
                         }
                     }
@@ -680,32 +680,32 @@
                             // Only move if previous cell is still within the same across clue
                             if (prevCol >= 0 && currentClue && prevCol >= currentClue.col) {
                                 manualFocus = false; // This is auto-navigation, not manual selection
-                                inputs[row][prevCol].focus();
+                                inputs[row][prevCol].focus({ preventScroll: true });
                             }
                         } else {
                             const prevRow = row - 1;
                             // Only move if previous cell is still within the same down clue
                             if (prevRow >= 0 && currentClue && prevRow >= currentClue.row) {
                                 manualFocus = false; // This is auto-navigation, not manual selection
-                                inputs[prevRow][col].focus();
+                                inputs[prevRow][col].focus({ preventScroll: true });
                             }
                         }
                     } else if (e.key === 'ArrowLeft' && col > 0) {
                         currentDirection = 'across';
                         manualFocus = false;
-                        inputs[row][col - 1].focus();
+                        inputs[row][col - 1].focus({ preventScroll: true });
                     } else if (e.key === 'ArrowRight' && col < 4) {
                         currentDirection = 'across';
                         manualFocus = false;
-                        inputs[row][col + 1].focus();
+                        inputs[row][col + 1].focus({ preventScroll: true });
                     } else if (e.key === 'ArrowUp' && row > 0) {
                         currentDirection = 'down';
                         manualFocus = false;
-                        inputs[row - 1][col].focus();
+                        inputs[row - 1][col].focus({ preventScroll: true });
                     } else if (e.key === 'ArrowDown' && row < 4) {
                         currentDirection = 'down';
                         manualFocus = false;
-                        inputs[row + 1][col].focus();
+                        inputs[row + 1][col].focus({ preventScroll: true });
                     }
                 });
 
@@ -821,11 +821,11 @@
             timerInterval = setInterval(updateTimer, 1000);
             updateTimer();
 
-            inputs[0][0].focus();
+            inputs[0][0].focus({ preventScroll: true });
         });
 
         // Focus first cell on load
-        inputs[0][0].focus();
+        inputs[0][0].focus({ preventScroll: true });
     </script>
 </body>
 </html>
