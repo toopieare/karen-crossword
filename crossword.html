@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Mini Crossword</title>
+    <title>Karen's Mini</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
@@ -440,7 +440,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Mini Crossword</h1>
+        <h1>Karen's Mini</h1>
         
         <div class="controls">
             <div class="timer" id="timer">00:00</div>
@@ -588,7 +588,7 @@
             across: {
                 1: { row: 0, col: 0, length: 5, text: "Complaints after the wrong prescription, perhaps" },
                 6: { row: 1, col: 0, length: 5, text: "He made you a mother" },
-                7: { row: 2, col: 0, length: 5, text: "Anagram of a bodily fluid, meaning to get accustomed" },
+                7: { row: 2, col: 0, length: 5, text: "Anagram of a bodily fluid, meaning 'get accustomed'" },
                 8: { row: 3, col: 0, length: 5, text: "Less common, as some blood types" },
                 9: { row: 4, col: 0, length: 5, text: "What data may show" }
             },
@@ -597,7 +597,7 @@
                 2: { row: 0, col: 1, length: 5, text: "Your daughter's domain?" },
                 3: { row: 0, col: 2, length: 5, text: "Desired outcome in medicine" },
                 4: { row: 0, col: 3, length: 5, text: "Mother to Luis, or an excessively demanding woman" },
-                5: { row: 0, col: 4, length: 5, text: "Serious adverse drug reaction, spelled upward" }
+                5: { row: 0, col: 4, length: 5, text: "Acronym for a serious adverse drug reaction, spelled upward" }
             }
         };
 
@@ -880,7 +880,7 @@
                     message.classList.add('error');
                 } else if (allCorrect) {
                     clearInterval(timerInterval);
-                    message.textContent = '🎉 Congratulations! You solved it!';
+                    message.textContent = 'Congratulations! Happy Birthday!';
                     message.classList.add('success');
                 } else {
                     message.textContent = 'Some answers are incorrect. Keep trying!';
