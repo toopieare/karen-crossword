@@ -213,12 +213,14 @@
             padding: 1.25rem 1.5rem;
             border: 2px solid var(--grid-border);
             background: var(--grid-bg);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             min-height: 80px;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             box-shadow: 0 2px 8px var(--shadow);
+            width: 100%;
+            max-width: 400px;
         }
 
         .active-clue-direction {
@@ -322,6 +324,8 @@
             .active-clue {
                 padding: 1rem 1.25rem;
                 min-height: 70px;
+                margin-top: 1rem;
+                max-width: 100%;
             }
 
             .active-clue-text {
@@ -364,9 +368,13 @@
                 gap: 1.5rem;
             }
 
+            .grid-container {
+                width: 100%;
+            }
+
             .crossword-grid {
-                transform: scale(0.85);
-                transform-origin: center;
+                transform: scale(0.9);
+                transform-origin: top center;
                 margin-bottom: 0;
             }
 
@@ -400,7 +408,7 @@
             .active-clue {
                 padding: 0.875rem 1rem;
                 min-height: 65px;
-                margin-top: 1rem;
+                margin-top: 0.75rem;
             }
 
             .active-clue-direction {
@@ -432,6 +440,11 @@
         <div class="main-content">
             <div class="grid-container">
                 <div class="crossword-grid" id="grid"></div>
+                
+                <div class="active-clue" id="activeClue">
+                    <div class="active-clue-direction" id="clueDirection"></div>
+                    <div class="active-clue-text" id="clueText">Click on a cell to see the clue</div>
+                </div>
             </div>
 
             <div class="clues">
@@ -487,11 +500,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="active-clue" id="activeClue">
-            <div class="active-clue-direction" id="clueDirection"></div>
-            <div class="active-clue-text" id="clueText">Click on a cell to see the clue</div>
         </div>
 
         <div class="message" id="message"></div>
