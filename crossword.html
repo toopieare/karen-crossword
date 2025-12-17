@@ -697,13 +697,25 @@
                 input.addEventListener('focus', () => {
                     document.querySelectorAll('.cell').forEach(c => c.classList.remove('active'));
                     cell.classList.add('active');
+                    
+                    // Determine initial direction based on position
+                    // If in leftmost column (col 0), prioritize across
+                    // If in top row (row 0), prioritize down
+                    // Otherwise keep current direction
+                    if (col === 0) {
+                        currentDirection = 'across';
+                    } else if (row === 0) {
+                        currentDirection = 'down';
+                    }
+                    // For other cells, keep the current direction
+                    
                     updateActiveClue(row, col);
                 });
 
                 // Toggle direction when clicking on already focused cell
                 input.addEventListener('click', () => {
                     if (document.activeElement === input) {
-                        // Toggle direction
+                        // Toggle direction only if cell has both across and down clues
                         const acrossClue = findClue(row, col, 'across');
                         const downClue = findClue(row, col, 'down');
                         
