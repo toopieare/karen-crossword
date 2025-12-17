@@ -170,11 +170,13 @@
             text-align: center;
             font-size: 1.5rem;
             font-weight: 600;
-            font-family: 'Karla', sans-serif;
+            font-family: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
             text-transform: uppercase;
             outline: none;
             caret-color: var(--accent);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .clues {
@@ -311,6 +313,7 @@
 
             .cell input {
                 font-size: 1.2rem;
+                font-family: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
             }
 
             .clue-section h2 {
@@ -385,6 +388,7 @@
 
             .cell input {
                 font-size: 1.3rem;
+                font-family: 'Karla', -apple-system, BlinkMacSystemFont, sans-serif;
             }
 
             .clues {
@@ -430,7 +434,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Mini Crossword-1</h1>
+        <h1>Mini Crossword</h1>
         
         <div class="controls">
             <div class="timer" id="timer">00:00</div>
@@ -545,6 +549,9 @@
 
         // Current direction (across or down)
         let currentDirection = 'across';
+        
+        // Flag to track if focus was triggered by user click vs auto-navigation
+        let manualFocus = true;
 
         // Find which clue a cell belongs to
         function findClue(row, col, direction) {
@@ -644,12 +651,14 @@
                             const nextCol = col + 1;
                             // Only move if next cell is still within the same across clue
                             if (nextCol < 5 && currentClue && nextCol < currentClue.col + currentClue.length) {
+                                manualFocus = false; // This is auto-navigation, not manual selection
                                 inputs[row][nextCol].focus();
                             }
                         } else {
                             const nextRow = row + 1;
                             // Only move if next cell is still within the same down clue
                             if (nextRow < 5 && currentClue && nextRow < currentClue.row + currentClue.length) {
+                                manualFocus = false; // This is auto-navigation, not manual selection
                                 inputs[nextRow][col].focus();
                             }
                         }
@@ -670,26 +679,32 @@
                             const prevCol = col - 1;
                             // Only move if previous cell is still within the same across clue
                             if (prevCol >= 0 && currentClue && prevCol >= currentClue.col) {
+                                manualFocus = false; // This is auto-navigation, not manual selection
                                 inputs[row][prevCol].focus();
                             }
                         } else {
                             const prevRow = row - 1;
                             // Only move if previous cell is still within the same down clue
                             if (prevRow >= 0 && currentClue && prevRow >= currentClue.row) {
+                                manualFocus = false; // This is auto-navigation, not manual selection
                                 inputs[prevRow][col].focus();
                             }
                         }
                     } else if (e.key === 'ArrowLeft' && col > 0) {
                         currentDirection = 'across';
+                        manualFocus = false;
                         inputs[row][col - 1].focus();
                     } else if (e.key === 'ArrowRight' && col < 4) {
                         currentDirection = 'across';
+                        manualFocus = false;
                         inputs[row][col + 1].focus();
                     } else if (e.key === 'ArrowUp' && row > 0) {
                         currentDirection = 'down';
+                        manualFocus = false;
                         inputs[row - 1][col].focus();
                     } else if (e.key === 'ArrowDown' && row < 4) {
                         currentDirection = 'down';
+                        manualFocus = false;
                         inputs[row + 1][col].focus();
                     }
                 });
@@ -698,16 +713,24 @@
                     document.querySelectorAll('.cell').forEach(c => c.classList.remove('active'));
                     cell.classList.add('active');
                     
-                    // Determine initial direction based on position
-                    // If in leftmost column (col 0), prioritize across
-                    // If in top row (row 0), prioritize down
-                    // Otherwise keep current direction
-                    if (col === 0) {
-                        currentDirection = 'across';
-                    } else if (row === 0) {
-                        currentDirection = 'down';
+                    // Only determine direction based on position if this is a manual focus (click/tap)
+                    // Not if it's auto-navigation from typing
+                    if (manualFocus) {
+                        // Determine initial direction based on position
+                        // Top row takes priority over leftmost column
+                        // If in top row (row 0), prioritize down
+                        // Else if in leftmost column (col 0), prioritize across
+                        // Otherwise keep current direction
+                        if (row === 0) {
+                            currentDirection = 'down';
+                        } else if (col === 0) {
+                            currentDirection = 'across';
+                        }
+                        // For other cells, keep the current direction
                     }
-                    // For other cells, keep the current direction
+                    
+                    // Reset flag for next time
+                    manualFocus = true;
                     
                     updateActiveClue(row, col);
                 });
