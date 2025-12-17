@@ -114,15 +114,15 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             min-height: 0;
+            overflow: hidden;
         }
 
         .grid-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 0.75rem;
+            flex-shrink: 0;
         }
 
         .active-clue {
@@ -212,13 +212,18 @@
             font-family: 'Karla', sans-serif;
             color: var(--text);
             text-transform: uppercase;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .clues-toggle {
             padding: 0.65rem;
             border: 2px solid var(--grid-border);
+            border-top: none;
             background: var(--grid-bg);
-            margin-bottom: 0.75rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -228,6 +233,7 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--accent);
+            flex-shrink: 0;
         }
 
         .clues-toggle:active {
@@ -239,10 +245,11 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
+            flex-shrink: 0;
         }
 
         .clues-content.open {
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
@@ -287,7 +294,9 @@
             background: var(--grid-bg);
             padding: 0.5rem;
             border-top: 2px solid var(--grid-border);
-            box-shadow: 0 -4px 12px var(--shadow);
+            border-bottom: 2px solid var(--grid-border);
+            box-shadow: 0 -2px 8px var(--shadow), 0 2px 8px var(--shadow);
+            flex-shrink: 0;
         }
 
         .keyboard-row {
@@ -442,6 +451,45 @@
                 <div class="message" id="message"></div>
             </div>
 
+            <div style="flex: 1; min-height: 10px;"></div>
+
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <div class="key" data-key="Q">Q</div>
+                    <div class="key" data-key="W">W</div>
+                    <div class="key" data-key="E">E</div>
+                    <div class="key" data-key="R">R</div>
+                    <div class="key" data-key="T">T</div>
+                    <div class="key" data-key="Y">Y</div>
+                    <div class="key" data-key="U">U</div>
+                    <div class="key" data-key="I">I</div>
+                    <div class="key" data-key="O">O</div>
+                    <div class="key" data-key="P">P</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" data-key="A">A</div>
+                    <div class="key" data-key="S">S</div>
+                    <div class="key" data-key="D">D</div>
+                    <div class="key" data-key="F">F</div>
+                    <div class="key" data-key="G">G</div>
+                    <div class="key" data-key="H">H</div>
+                    <div class="key" data-key="J">J</div>
+                    <div class="key" data-key="K">K</div>
+                    <div class="key" data-key="L">L</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key wide" data-key="BACKSPACE">⌫</div>
+                    <div class="key" data-key="Z">Z</div>
+                    <div class="key" data-key="X">X</div>
+                    <div class="key" data-key="C">C</div>
+                    <div class="key" data-key="V">V</div>
+                    <div class="key" data-key="B">B</div>
+                    <div class="key" data-key="N">N</div>
+                    <div class="key" data-key="M">M</div>
+                    <div class="key wide" data-key="ENTER">✓</div>
+                </div>
+            </div>
+
             <div>
                 <div class="clues-toggle" id="cluesToggle">
                     <span>View All Clues</span>
@@ -501,43 +549,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="keyboard">
-                <div class="keyboard-row">
-                    <div class="key" data-key="Q">Q</div>
-                    <div class="key" data-key="W">W</div>
-                    <div class="key" data-key="E">E</div>
-                    <div class="key" data-key="R">R</div>
-                    <div class="key" data-key="T">T</div>
-                    <div class="key" data-key="Y">Y</div>
-                    <div class="key" data-key="U">U</div>
-                    <div class="key" data-key="I">I</div>
-                    <div class="key" data-key="O">O</div>
-                    <div class="key" data-key="P">P</div>
-                </div>
-                <div class="keyboard-row">
-                    <div class="key" data-key="A">A</div>
-                    <div class="key" data-key="S">S</div>
-                    <div class="key" data-key="D">D</div>
-                    <div class="key" data-key="F">F</div>
-                    <div class="key" data-key="G">G</div>
-                    <div class="key" data-key="H">H</div>
-                    <div class="key" data-key="J">J</div>
-                    <div class="key" data-key="K">K</div>
-                    <div class="key" data-key="L">L</div>
-                </div>
-                <div class="keyboard-row">
-                    <div class="key wide" data-key="BACKSPACE">⌫</div>
-                    <div class="key" data-key="Z">Z</div>
-                    <div class="key" data-key="X">X</div>
-                    <div class="key" data-key="C">C</div>
-                    <div class="key" data-key="V">V</div>
-                    <div class="key" data-key="B">B</div>
-                    <div class="key" data-key="N">N</div>
-                    <div class="key" data-key="M">M</div>
-                    <div class="key wide" data-key="ENTER">✓</div>
                 </div>
             </div>
         </div>
@@ -759,15 +770,19 @@
                 cell.appendChild(letter);
                 
                 cell.addEventListener('click', () => {
-                    if (activeRow === row && activeCol === col) {
+                    const wasActive = (activeRow === row && activeCol === col);
+                    
+                    if (wasActive) {
                         // Toggle direction if clicking same cell
                         const acrossClue = findClue(row, col, 'across');
                         const downClue = findClue(row, col, 'down');
                         if (acrossClue && downClue) {
                             currentDirection = currentDirection === 'across' ? 'down' : 'across';
+                            setActiveCell(row, col, false); // Don't update direction, we just set it
+                            return;
                         }
                     }
-                    setActiveCell(row, col);
+                    setActiveCell(row, col, true);
                 });
 
                 grid.appendChild(cell);
